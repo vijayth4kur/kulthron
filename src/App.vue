@@ -2,7 +2,7 @@
 <section id ="app">
     <header class="wrapper boxshadow">
         <div class="logo">
-            <img src="/logo.png">
+            <img class="logo-img" src="/logo.png">
         </div>
     </header>
 

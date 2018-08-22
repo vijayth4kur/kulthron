@@ -23,8 +23,11 @@ body
     position: fixed
     left: 0
     right: 0
-    top: 136px
+    top: 121px
     bottom: 73px
+
+    @media screen and (max-width: 500px)
+        top: 71px
 
 .up
     font-size: 32px
@@ -214,7 +217,7 @@ td
 
 header
     background-color: #eee
-    padding: 1rem
+    padding: 0.5rem 1rem
     position: fixed
     left: 0
     right: 0
@@ -222,6 +225,12 @@ header
 
 .logo
     text-align: center
+
+.logo-img
+    height: 100px
+
+    @media screen and (max-width: 500px)
+        height: 50px
 
 .boxshadow
     box-shadow: 0px 10px 10px #ccc;
@@ -236,4 +245,3 @@ header
 
 a
     color: $color
-    text-decoration: none
