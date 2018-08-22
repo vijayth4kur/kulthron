@@ -1,12 +1,12 @@
 <template>
 <section id ="app">
-    <header class="wrapper">
+    <header class="wrapper boxshadow">
         <div class="logo">
             <img src="/logo.png">
         </div>
     </header>
 
-    <main class="wrapper ai-window">
+    <main class="wrapper ai-window boxshadow">
 
         <!-- Display Welcome Message -->
         <div v-if="answers.length == 0 && online == true">
@@ -158,7 +158,7 @@
     </main>
 
     <!-- The input -->
-    <div class="wrapper query">
+    <div class="wrapper query boxshadow">
         <div v-if="micro == false">
             <!--<i class="material-icons iicon" @click="microphone(true)">mic</i>-->
             <input :aria-label="config.locale.strings.queryTitle" autocomplete="on" v-model="query" class="queryform" @keyup.enter="submit()" :placeholder="config.locale.strings.queryTitle" autofocus type="text">
@@ -208,6 +208,8 @@ export default {
     },
     methods: {
         submit(){
+            console.log(this.val);
+            this.val = '';
             client.textRequest(this.query).then((response) => {
                 if(response.result.action == "input.unknown" && this.config.app.googleIt == true){
                     response.result.fulfillment.messages[0].unknown = true
@@ -222,6 +224,7 @@ export default {
             })
         },
         handle(response){
+            console.log('handle');
             if(response.result.fulfillment.speech || response.result.fulfillment.messages[0].speech || response.result.fulfillment.messages[0].type == 'simple_response'){
                 let speech = new SpeechSynthesisUtterance(response.result.fulfillment.speech || response.result.fulfillment.messages[0].speech || response.result.fulfillment.messages[0].textToSpeech)
                 speech.voiceURI = 'native'
