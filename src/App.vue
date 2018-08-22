@@ -2,7 +2,7 @@
 <section id ="app">
     <header class="wrapper">
         <div class="logo">
-            <img src="https://cdn.glitch.com/2133b777-dc0a-44f7-bf9d-36954a8f916d%2Flogo.png?1534927128048">
+            <img src="/logo.png">
         </div>
     </header>
 
