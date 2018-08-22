@@ -61,6 +61,10 @@
 
                         <!-- Bot message types / Card -->
 
+                        <div v-if="a.result.metadata.intentName == 'specSheetYes'" class="bubble bot">
+                            Click <a :href="r.buttons[0].postback" target="_blank">here</a> to view spec sheet.
+                        </div>
+
                         <div class="mdc-card" v-if="r.type == 'basic_card'">
                             <img :title="r.image.accessibilityText" :alt="r.image.accessibilityText" class="mdc-card__media-item" :src="r.image.url" v-if="r.image">
                             <section class="mdc-card__primary">
@@ -154,6 +158,8 @@
 
         <!--<br>
         <p class="copyright" v-if="answers.length > 0">Proudly powered by <a href="https://ushakov.co">Ushakov</a> & <a href="https://dialogflow.com">Dialogflow</a></p>-->
+
+        <img v-if="loading" id="loader" src="/loader.gif">
         <a id="bottom"></a>
     </main>
 
@@ -188,6 +194,7 @@ export default {
     name: 'app',
     data: function(){ console.log('data');
         return {
+            loading: false,
             answers: [],
             query: '',
             speech: config.locale.strings.voiceTitle,
@@ -208,20 +215,24 @@ export default {
     },
     methods: {
         submit(){
-            console.log(this.val);
-            this.val = '';
-            client.textRequest(this.query).then((response) => {
-                if(response.result.action == "input.unknown" && this.config.app.googleIt == true){
-                    response.result.fulfillment.messages[0].unknown = true
-                    response.result.fulfillment.messages[0].text = response.result.resolvedQuery
-                } // if the googleIt is enabled, show the button
-
-                this.answers.push(response)
-                this.handle(response) // <- handle the response in handle() method
-
+            if(this.query !== ''){
+                let query = this.query
                 this.query = ''
-                this.speech = config.locale.strings.voiceTitle // <- reset query and speech
-            })
+                this.loading = true
+                client.textRequest(query).then((response) => {
+                    this.loading = false
+                    if(response.result.action == "input.unknown" && this.config.app.googleIt == true){
+                        response.result.fulfillment.messages[0].unknown = true
+                        response.result.fulfillment.messages[0].text = response.result.resolvedQuery
+                    } // if the googleIt is enabled, show the button
+
+                    this.answers.push(response)
+                    this.handle(response) // <- handle the response in handle() method
+
+                    this.query = ''
+                    this.speech = config.locale.strings.voiceTitle // <- reset query and speech
+                })
+            }
         },
         handle(response){
             console.log('handle');
