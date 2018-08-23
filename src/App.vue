@@ -12,12 +12,13 @@
         <div v-if="answers.length == 0 && online == true">
             <h1 class="title mdc-typography--headline">
                 
-                {{config.locale.strings.welcomeTitle}}
+                <!--{{config.locale.strings.welcomeTitle}}
 
                 <p class="mdc-typography--body2">{{config.locale.strings.welcomeDescription}}</p>
                 
                 <br>
-                <div class="material-icons down">arrow_downward</div>
+                <div class="material-icons down">arrow_downward</div>-->
+                <button v-on:click="tap()" class="btn">Tap here to find a cross reference</button>
             </h1>
         </div>
 
@@ -276,6 +277,10 @@ export default {
                     self.autosubmit(self.speech)
 			    }
             }
+        },
+        tap(){
+            this.query = "Find a cross reference";
+            this.submit();
         }
     }
 }
