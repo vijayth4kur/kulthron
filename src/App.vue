@@ -61,7 +61,7 @@
 
                         <!-- Bot message types / Card -->
 
-                        <div v-if="a.result.metadata.intentName == 'specSheetYes'" class="bubble bot">
+                        <div v-if="a.result.metadata.intentName == 'specSheetYes' && r.buttons" class="bubble bot">
                             Click <a :href="r.buttons[0].postback" target="_blank">here</a> to view spec sheet.
                         </div>
 
@@ -215,6 +215,7 @@ export default {
     },
     methods: {
         submit(){
+            console.log('query-'+this.query);
             if(this.query !== ''){
                 let query = this.query
                 this.query = ''
