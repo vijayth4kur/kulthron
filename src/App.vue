@@ -216,7 +216,7 @@ export default {
     },
     methods: {
         submit(){
-            console.log('query-'+this.query);
+            //console.log('query-'+this.query);
             if(this.query !== ''){
                 let query = this.query
                 this.query = ''
@@ -237,7 +237,7 @@ export default {
             }
         },
         handle(response){
-            console.log('handle');
+            //console.log('handle');
             if(response.result.fulfillment.speech || response.result.fulfillment.messages[0].speech || response.result.fulfillment.messages[0].type == 'simple_response'){
                 let speech = new SpeechSynthesisUtterance(response.result.fulfillment.speech || response.result.fulfillment.messages[0].speech || response.result.fulfillment.messages[0].textToSpeech)
                 speech.voiceURI = 'native'
