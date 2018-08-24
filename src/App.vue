@@ -160,7 +160,6 @@
         <!--<br>
         <p class="copyright" v-if="answers.length > 0">Proudly powered by <a href="https://ushakov.co">Ushakov</a> & <a href="https://dialogflow.com">Dialogflow</a></p>-->
 
-        <img v-if="loading" id="loader" src="/loader.gif">
         <a id="bottom"></a>
     </main>
 
@@ -168,13 +167,14 @@
     <div class="wrapper query boxshadow">
         <div v-if="micro == false">
             <!--<i class="material-icons iicon" @click="microphone(true)">mic</i>-->
-            <input :aria-label="config.locale.strings.queryTitle" autocomplete="on" v-model="query" class="queryform" @keyup.enter="submit()" :placeholder="config.locale.strings.queryTitle" autofocus type="text">
+            <input :aria-label="config.locale.strings.queryTitle" autocomplete="on" v-model="query" class="queryform" @keyup.enter="submit()" :placeholder="config.locale.strings.queryTitle" :disabled="loading" :class="{'disable': loading}" autofocus type="text">
             <!--<i class="material-icons iicon t2s" @click="mute(true)" v-if="muted == false">volume_up</i>
             <i class="material-icons iicon t2s" @click="mute(false)" v-else>volume_off</i>-->
         </div>
         <div v-else>
             <i class="material-icons iicon recording" @click="microphone(false)">mic</i><input class="queryform" :placeholder="speech" readonly>   
         </div>
+        <img v-if="loading" id="loader" src="/loader.gif">
     </div>
 
 </section>
