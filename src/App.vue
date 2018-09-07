@@ -2,7 +2,7 @@
 <section id ="app">
     <header class="wrapper boxshadow">
         <div class="logo">
-            <img class="logo-img" src="/logo.png">
+            <img class="logo-img" src="/kulthorn-logo.png">
         </div>
     </header>
 
@@ -248,6 +248,11 @@ export default {
             //this.scrollToEnd();
         },
         autosubmit(suggestion){
+            var elements = document.getElementsByClassName('suggestion');
+            for(var i=0; i<elements.length; i++){
+                elements[i].classList.add("sug-disable");
+            }
+            
             this.query = suggestion
             this.submit()
         },
