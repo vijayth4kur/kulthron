@@ -18,7 +18,8 @@
                 
                 <br>
                 <div class="material-icons down">arrow_downward</div>-->
-                <button v-on:click="tap()" class="btn">Tap here to find a cross reference</button>
+                <button v-on:click="tap('Find a cross reference')" class="btn">Tap here to find a cross reference</button>
+                <button v-on:click="tap('Help me find a compressor')" class="btn">Help me find a compressor</button>
             </h1>
         </div>
 
@@ -283,8 +284,8 @@ export default {
 			    }
             }
         },
-        tap(){
-            this.query = "Find a cross reference";
+        tap(str){
+            this.query = str;
             this.submit();
         }
     }
