@@ -18,8 +18,9 @@
                 
                 <br>
                 <div class="material-icons down">arrow_downward</div>-->
+                <p>Hi there! what may I help you with, today?</p>
                 <button v-on:click="tap('Find a cross reference')" class="btn">Tap here to find a cross reference</button>
-                <button v-on:click="tap('Help me find a compressor')" class="btn">Help me find a compressor</button>
+                <button v-on:click="tap('(Help me) identify the right compressor')" class="btn">(Help me) identify the right compressor</button>
             </h1>
         </div>
 
