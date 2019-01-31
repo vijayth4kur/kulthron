@@ -18,9 +18,10 @@
                 
                 <br>
                 <div class="material-icons down">arrow_downward</div>-->
-                <p>Hi there! what may I help you with, today?</p>
-                <button v-on:click="tap('Find a cross reference')" class="btn">Tap here to find a cross reference</button>
-                <button v-on:click="tap('(Help me) identify the right compressor')" class="btn">(Help me) identify the right compressor</button>
+                <p>Hi there! What may I help you with, today?</p>
+                <button v-on:click="tap('Find a cross-reference/alternative model')" class="btn">Find a cross-reference/alternative model</button>
+                <button v-on:click="tap('Identify the right compressor for me')" class="btn">Identify the right compressor for me</button>
+                <!-- <button v-on:click="tap('Troubleshooting Guide')" class="btn">Troubleshooting Guide</button> -->
             </h1>
         </div>
 
@@ -49,14 +50,14 @@
                 <td>
 
                     <!-- Bot message types / Speech -->
-                    <div v-if="a.result.fulfillment.speech">
+                    <div v-if="a.result.fulfillment.speech" style="clear:both;">
                         <div class="bubble bot">
                             {{a.result.fulfillment.speech}}
                         </div>
                     </div>
 
                     <!-- Google Assistant output -->
-                    <div v-for="r in a.result.fulfillment.messages">
+                    <div v-for="r in a.result.fulfillment.messages" style="clear:both;">
                         
                         <div v-if="r.speech && !a.result.fulfillment.speech" class="bubble bot">
                             {{r.speech}}
@@ -270,19 +271,19 @@ export default {
 
                 recognition.interimResults = true
                 recognition.lang = config.locale.settings.recognitionLang
-			    recognition.start()
+                recognition.start()
 
                 recognition.onresult = function(event){
-			        for (var i = event.resultIndex; i < event.results.length; ++i){
-			    	    self.speech = event.results[i][0].transcript
-			        }
-			    }
+                    for (var i = event.resultIndex; i < event.results.length; ++i){
+                        self.speech = event.results[i][0].transcript
+                    }
+                }
 
-			    recognition.onend = function(){
-				    recognition.stop()
+                recognition.onend = function(){
+                    recognition.stop()
                     self.micro = false
                     self.autosubmit(self.speech)
-			    }
+                }
             }
         },
         tap(str){

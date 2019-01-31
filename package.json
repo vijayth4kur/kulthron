@@ -5,7 +5,7 @@
   "author": "Ushakov",
   "scripts": {
     "start": "node server.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --open",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
