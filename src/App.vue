@@ -21,6 +21,7 @@
                 <p>Hi there! What may I help you with, today?</p>
                 <button v-on:click="tap('Find a cross-reference/alternative model')" class="btn">Find a cross-reference/alternative model</button>
                 <button v-on:click="tap('Identify the right compressor for me')" class="btn">Identify the right compressor for me</button>
+                <button v-on:click="tap('I need a specification sheet')" class="btn">I need a specification sheet</button>
                 <!-- <button v-on:click="tap('Troubleshooting Guide')" class="btn">Troubleshooting Guide</button> -->
             </h1>
         </div>
@@ -65,7 +66,7 @@
 
                         <!-- Bot message types / Card -->
 
-                        <div v-if="a.result.metadata.intentName == 'specSheetYes' && r.buttons" class="bubble bot">
+                        <div v-if="(a.result.metadata.intentName == 'specSheetYes' || a.result.metadata.intentName == 'needSpecificationSheet') && r.buttons" class="bubble bot">
                             Click <a :href="r.buttons[0].postback" target="_blank">here</a> to view spec sheet.
                         </div>
 
