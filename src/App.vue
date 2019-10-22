@@ -3,6 +3,7 @@
     <header class="wrapper boxshadow">
         <div class="logo">
             <img class="logo-img" src="/kulthorn-logo.png">
+             <button class="refesh-page"  v-on:click="tap('stop')">  <img class="refesh-pageimage" src="/refreshicon.png"></button>
         </div>
     </header>
 
@@ -197,7 +198,7 @@ const client = new ApiAiClient({accessToken: config.app.token}) // <- replace it
 
 export default {
     name: 'app',
-    data: function(){ console.log('data');
+    data: function(){ //console.log('data');
         return {
             loading: false,
             answers: [],
@@ -227,16 +228,20 @@ export default {
                 this.loading = true
                 client.textRequest(query).then((response) => {
                     this.loading = false
-                    if(response.result.action == "input.unknown" && this.config.app.googleIt == true){
-                        response.result.fulfillment.messages[0].unknown = true
-                        response.result.fulfillment.messages[0].text = response.result.resolvedQuery
-                    } // if the googleIt is enabled, show the button
+                    if(query == 'stop'){
+                        location.reload();
+                    }else{
+                        if(response.result.action == "input.unknown" && this.config.app.googleIt == true){
+                            response.result.fulfillment.messages[0].unknown = true
+                            response.result.fulfillment.messages[0].text = response.result.resolvedQuery
+                        } // if the googleIt is enabled, show the button
 
-                    this.answers.push(response)
-                    this.handle(response) // <- handle the response in handle() method
+                        this.answers.push(response)
+                        this.handle(response) // <- handle the response in handle() method
 
-                    this.query = ''
-                    this.speech = config.locale.strings.voiceTitle // <- reset query and speech
+                        this.query = ''
+                        this.speech = config.locale.strings.voiceTitle // <- reset query and speech
+                    }
                 })
             }
         },
