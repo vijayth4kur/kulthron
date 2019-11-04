@@ -2,7 +2,7 @@
 
 1) To start server  
 npm start  
-http://localhost:8080/
+http://localhost:8000/
 
 2) To run in development mode  
 npm run dev
