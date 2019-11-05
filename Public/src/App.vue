@@ -2,8 +2,8 @@
 <section id ="app">
     <header class="wrapper boxshadow">
         <div class="logo">
-            <img class="logo-img" src="/kulthorn-logo.png">
-             <button class="refesh-page"  v-on:click="tap('stop')">  <img class="refesh-pageimage" src="/refreshicon.png"></button>
+            <img class="logo-img" src="/Public/kulthorn-logo.png">
+             <button class="refesh-page"  v-on:click="tap('stop')">  <img class="refesh-pageimage" src="/Public/refreshicon.png"></button>
         </div>
     </header>
 
@@ -197,7 +197,7 @@
         <div v-else>
             <i class="material-icons iicon recording" @click="microphone(false)">mic</i><input class="queryform" :placeholder="speech" readonly>   
         </div>
-        <img v-if="loading" id="loader" src="/loader.gif">
+        <img v-if="loading" id="loader" src="/Public/loader.gif">
     </div>
 </section>
 </template>

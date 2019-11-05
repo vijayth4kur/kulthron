@@ -9,7 +9,7 @@ const express = require("express"),
     path = require('path');
 
 // Sends static files  from the public path directory
-server.use(express.static(path.join(__dirname, '/Public')))
+server.use(express.static(path.join(__dirname, '/')))
 // Use morgan to log request in dev mode
 server.use(morgan('dev'))
 
@@ -38,7 +38,7 @@ server.use('/api', apiRoutes);
 
 // Server index.html page when request to the root is made
 server.get('/', function (request, response, next) {
-    response.sendfile('./Public/index.html');
+    response.sendfile('./index.html');
 });
 
 // Start Server
