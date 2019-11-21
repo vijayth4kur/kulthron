@@ -296,6 +296,10 @@ export default {
       }
     },
     autosubmit(suggestion) {
+      var elements = document.getElementsByClassName('suggestion');
+      for(var i=0; i<elements.length; i++){
+          elements[i].classList.add("sug-disable");
+      }
       this.query = suggestion;
       this.submit();
     },
